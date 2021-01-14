@@ -29,10 +29,15 @@ console.log(processFirstItem(['foo','bar'],function(str){return str+str}));
   
   1. What is the difference between counter1 and counter2?
   
+  counter 1 is function scoped while  counter 2 is blocked scoped. 
+
+
   2. Which of the two uses a closure? How can you tell?
+  counter 1 does since the entire execusion lives within the function. 
   
   3. In what scenario would the counter1 code be preferable? In what scenario would 
      counter2 be better?  
+     counter 1 if you are not needing to access these variables anyhwere else in your code, counter 2 if you are needing to access them later in your code. 
 */
 
 // counter1 code
@@ -62,9 +67,13 @@ Use the inning function below to do the following:
 NOTE: This will be a callback function for the tasks below
 */
 
-function inning(/*Code Here*/){
-    /*Code Here*/
+function inning(){ 
+ return Math.floor(Math.random()*3)
+  
+
 }
+
+
 
 
 /* ⚾️⚾️⚾️ Task 3: finalScore() ⚾️⚾️⚾️
@@ -81,8 +90,13 @@ Use the finalScore function below to do the following:
 }
 */ 
 
-function finalScore(/*code Here*/){
-  /*Code Here*/
+function finalScore(inning,num){
+let finalScore = 
+{
+  Home: inning() * num,
+  Away: inning() * num,
+};
+  return finalScore
 }
 
 /* ⚾️⚾️⚾️ Task 4: getInningScore() ⚾️⚾️⚾️
@@ -90,7 +104,12 @@ Use the getInningScore() function below to do the following:
   1. Receive a callback function - you will pass in the inning function from task 2 as your argument 
   2. Return an object with a score for home and a score for away that populates from invoking the inning callback function */
 
-function getInningScore(/*Your Code Here */) {
+function getInningScore(callback) {
+
+return {
+  'Home': callback(),
+  'Away': callback()
+}
   /*Your Code Here */
 }
 
@@ -136,8 +155,18 @@ Use the scoreboard function below to do the following:
 ]  
   */
 
-function scoreboard(/* CODE HERE */) {
+function scoreboard(callback1, callback2, numOfInnings) {
+
+  let innings = [];
+
+  for(let i = 1; i <= numOfInnings; i++){
+    innings.push(`Inning ${[i]}: Away ${callback2()}
+    - Home ${callback2()}`)
+  }
+innings.push(`Final Score: Away - Home`)
   /* CODE HERE */
+
+  return innings
 }
 
 
